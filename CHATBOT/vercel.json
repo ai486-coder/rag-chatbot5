@@ -1,5 +1,23 @@
 {
   "version": 2,
-  "builds": [{ "src": "app.py", "use": "@vercel/python" }],
-  "routes": [{ "src": "/(.*)", "dest": "app.py" }]
+  "builds": [
+    {
+      "src": "CHATBOT/main.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "apps/web/next.config.js",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "CHATBOT/main.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "apps/web/$1"
+    }
+  ]
 }
